@@ -5,9 +5,12 @@ const SingleCard: React.FC<SingleCardProps> = ({
   card,
   handleChoice,
   flipped,
+  disabled,
 }) => {
   const handleClick = () => {
-    handleChoice(card);
+    if (!disabled) {
+      handleChoice(card);
+    }
   };
 
   return (

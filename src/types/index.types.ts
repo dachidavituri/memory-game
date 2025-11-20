@@ -8,4 +8,5 @@ export type SingleCardProps = {
   card: Card;
   handleChoice: (card: Card) => void;
   flipped: boolean
+  disabled: boolean
 };
