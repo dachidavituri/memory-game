@@ -6,7 +6,7 @@ import SingleCard from "./components/singleCard";
 
 function App() {
   const [cards, setCards] = useState<Card[]>([]);
-  const [turns, setTurns] = useState(0);
+  const [turns, setTurns] = useState<number>(0);
   const [choiceOne, setChoiceOne] = useState<Card | null>(null);
   const [choiceTwo, setChoiceTwo] = useState<Card | null>(null);
 
@@ -42,8 +42,7 @@ function App() {
         });
         resetTurn();
       } else {
-        console.log("those cards not match");
-        resetTurn;
+        setTimeout(() => resetTurn(), 500);
       }
     }
   }, [choiceOne, choiceTwo]);
@@ -54,7 +53,12 @@ function App() {
       <button onClick={shuffleCards}>New Game</button>
       <div className="card-grid">
         {cards.map((card) => (
-          <SingleCard card={card} handleChoice={handleChoice} key={card.id} />
+          <SingleCard
+            card={card}
+            handleChoice={handleChoice}
+            key={card.id}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+          />
         ))}
       </div>
     </div>
